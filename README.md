@@ -1,0 +1,2 @@
+Aplicativo Android nativo (Kotlin + Jetpack Compose) projetado para leitura de e-books (.epub e .pdf) com tradução 100% offline página por página, interface estilo Kindle otimizada para uso com uma mão e baixo consumo de memória RAM (compatível com Android 10+ / API 29).
+O projeto está pré-configurado com GitHub Actions para compilar automaticamente o .apk na nuvem a cada push, permitindo baixar e instalar o aplicativo diretamente pelo navegador do celular sem precisar de Android Studio.
