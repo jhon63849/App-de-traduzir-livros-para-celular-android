@@ -1,0 +1,54 @@
+name: Build KindleTranslate Offline APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: Compilar APK Debug (Android)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código-fonte
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Configurar cache do Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Garantir debug.keystore para assinatura local
+        run: |
+          if [ ! -f debug.keystore ]; then
+            keytool -genkey -v \
+              -keystore debug.keystore \
+              -storepass android \
+              -alias androiddebugkey \
+              -keypass android \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+      - name: Dar permissão ao Gradle Wrapper
+        run: chmod +x ./gradlew
+
+      - name: Compilar APK Debug (otimizado para celular)
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Disponibilizar app-debug.apk para download no celular
+        uses: actions/upload-artifact@v4
+        with:
+          name: KindleTranslate-Offline-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+          if-no-files-found: error

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">KindleTranslate Offline</string>
+    <string name="nav_library">Biblioteca</string>
+    <string name="nav_languages">Idiomas</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="action_import_book">Importar EPUB ou PDF</string>
+    <string name="action_load_sample">Abrir Clássico de Exemplo</string>
+    <string name="mode_translation_only">Só Tradução</string>
+    <string name="mode_original_only">Só Original</string>
+    <string name="mode_bilingual">Bilíngue</string>
+    <string name="settings_clear_cache">Limpar Cache de Traduções</string>
+    <string name="languages_title">Gerenciador de Idiomas</string>
+    <string name="languages_wifi_only">Exigir Wi-Fi para baixar pacotes</string>
+</resources>
